@@ -1,0 +1,2 @@
+rootProject.name='Market-Admin'
+include ':app'
