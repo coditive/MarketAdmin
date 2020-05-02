@@ -1,7 +1,5 @@
 package com.syrous.market_admin.data
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.squareup.moshi.JsonClass
 
 /**
@@ -13,9 +11,14 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class CustomerOrder (
     val id: String,
+    val user_id: String,
+    val first_name: String,
+    val last_name: String,
+    val phone: Int,
+    val address: Address,
     val order: List<Order>,
-    val total_cost: Int,
+    val total_cost: String,
     val delivery_status: String,
-    val mode_of_payment: String,
-    val payment_status: String
+    val transaction_id: String,
+    val timestamp: Timestamp
 )

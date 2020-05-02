@@ -91,9 +91,13 @@
         <item name="android:layout_margin">16dp</item>
     </style>
 
-    <style name="cart_total" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">20sp</item>
+    <style name="header_items" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="content_items" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">15sp</item>
     </style>
 
 </resources>

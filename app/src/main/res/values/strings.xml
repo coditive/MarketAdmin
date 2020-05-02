@@ -6,4 +6,16 @@
     <string name="add_to_cart">Add to cart</string>
     <string name="remove_from_cart">Remove from cart</string>
     <string name="total_amount">Total Amount</string>
+    
+<!--    Recycler view resource-->
+    <string name="customer_name">Customer Name :</string>
+    <string name="customer_contact">Contact : </string>
+    <string name="customer_address">Address : </string>
+    <string name="customer_order">Order : </string>
+    <string name="total_cost">Total Amount : </string>
+
+    
+    
+    
+    
 </resources>
