@@ -1,8 +1,10 @@
 package com.syrous.market_admin.utli
 
+import android.content.res.Resources
 import com.squareup.moshi.Moshi
 import com.syrous.market_admin.data.Order
 import com.syrous.market_admin.data.OrderJsonAdapter
+import kotlin.math.ceil
 
 /**
  * This function is a ext fun, that takes
@@ -11,7 +13,11 @@ import com.syrous.market_admin.data.OrderJsonAdapter
  */
 
 
-fun Order.toJson(moshi: Moshi): String{
+fun Order.toJson(moshi: Moshi): String {
     val jsonAdapter = OrderJsonAdapter(moshi)
     return jsonAdapter.toJson(this)
 }
+
+//var sp: Float = px / getResources().getDisplayMetrics().scaledDensity
+fun Float.toSp(resources: Resources): Int =
+    ceil(this * resources.displayMetrics.scaledDensity).toInt()

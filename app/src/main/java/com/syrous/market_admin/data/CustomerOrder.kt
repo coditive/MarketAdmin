@@ -20,5 +20,5 @@ data class CustomerOrder (
     val total_cost: String,
     val delivery_status: String,
     val transaction_id: String,
-    val timestamp: Timestamp
+    val timestamp: Timestamp //timestamp should just be epoch time
 )
