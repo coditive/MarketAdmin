@@ -9,7 +9,7 @@ data class Transaction(
     val payment_status: String,
     val received_by: String,
     val received_payment: Double,
-    val timestamp: Timestamp,
+    val timestamp: Long,
     val total_cost: Double,
     val user_id: String
 )

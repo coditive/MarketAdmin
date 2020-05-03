@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <color name="pos_text_primary">#F000</color>
+  <color name="pos_text_secondary">#FF323232</color>
+  <color name="pos_highlight">#FAAA</color>
+  <color name="pos_divider">#FDDD</color>
+  <color name="pos_accent">#FF00796B</color>
+
+</resources>

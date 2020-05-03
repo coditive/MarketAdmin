@@ -1,2 +1,3 @@
 rootProject.name='Market-Admin'
 include ':app'
+include ':lib_bluetooth'

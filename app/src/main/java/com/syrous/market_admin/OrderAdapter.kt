@@ -1,5 +1,6 @@
 package com.syrous.market_admin
 
+import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.StyleSpan
@@ -17,12 +18,13 @@ import java.util.*
 class OrderAdapter : ListAdapter<CustomerOrder, OrderAdapter.OrderViewHolder>(CALLBACK) {
     inner class OrderViewHolder(private val binding: OrderItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SimpleDateFormat")
         fun bind(customerOrder: CustomerOrder) {
             binding.apply {
                 textViewName.text =
                     String.format("%s %s", customerOrder.first_name, customerOrder.last_name)
                 timeStamp.text = java.text.SimpleDateFormat("dd-MMM-yyyy HH:mm a")
-                    .format(Date(customerOrder.timestamp._nanoseconds))
+                    .format(Date(customerOrder.timestamp))
                 textViewContact.text = customerOrder.phone.toString()
                 val truss = Truss()
                 customerOrder.order.forEach {

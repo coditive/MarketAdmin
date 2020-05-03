@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:paddingTop="24dp">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+      android:id="@+id/paired_devices"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <TextView
+        style="@style/PosDialogSubtitle"
+        android:text="@string/pos_paired_devices" />
+
+      <LinearLayout
+        android:id="@+id/paired_devices_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+      <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/pos_divider" />
+    </LinearLayout>
+
+    <LinearLayout
+      android:id="@+id/available_devices"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+          style="@style/PosDialogSubtitle"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:text="@string/pos_available_devices" />
+
+        <ProgressBar
+          android:id="@+id/search_devices_progress"
+          style="@style/Base.Widget.AppCompat.ProgressBar"
+          android:layout_width="16dp"
+          android:layout_height="16dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp" />
+
+      </LinearLayout>
+
+      <LinearLayout
+        android:id="@+id/available_devices_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="8dp"
+        android:orientation="vertical" />
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+</ScrollView>
