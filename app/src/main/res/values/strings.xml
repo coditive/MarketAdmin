@@ -18,6 +18,8 @@
     <string name="stock_availability">Stock availability</string>
     <string name="stock">Stock</string>
     <string name="update_product">Update Product</string>
+    <string name="print_receipt">Print Receipt</string>
+    <string name="config_product">Configure Product</string>
 
 
 </resources>

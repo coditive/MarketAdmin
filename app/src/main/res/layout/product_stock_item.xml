@@ -72,14 +72,19 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
+        <!--        stock (quantity) price unit-->
+
         <TextView
             android:id="@+id/stock_available_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
             android:text="@string/stock_availability"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/stock_label" />
 
         <CheckBox
@@ -87,9 +92,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@id/stock_available_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/guideline"
-            app:layout_constraintTop_toTopOf="@id/stock_available_label" />
-        <!--        stock (quantity) price unit-->
+            app:layout_constraintTop_toTopOf="@id/stock_available_label"
+            app:layout_constraintVertical_bias="0.666" />
+
         <TextView
             android:id="@+id/stock_label"
             android:layout_width="wrap_content"

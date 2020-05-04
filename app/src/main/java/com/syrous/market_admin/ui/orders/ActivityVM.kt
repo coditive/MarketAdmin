@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.syrous.market_admin.data.CustomerOrder
+import com.syrous.market_admin.data.PaymentDetails
 import com.syrous.market_admin.data.remote.RemoteApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,6 +33,17 @@ class ActivityVM(private val remoteApi: RemoteApi) : ViewModel() {
                 _loading.postValue(false)
             }
         }
+    }
 
+    fun hitPaymentDone(orderId: String, payment: String) {
+        viewModelScope.launch(Dispatchers.IO){
+            remoteApi.paymentDoneCall(orderId, PaymentDetails(received_payment = payment))
+        }
+    }
+
+    fun hitOrderReady(orderId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            remoteApi.orderReadyCall(orderId)
+        }
     }
 }

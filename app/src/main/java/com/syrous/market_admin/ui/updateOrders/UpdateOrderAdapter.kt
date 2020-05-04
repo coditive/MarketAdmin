@@ -21,7 +21,7 @@ class UpdateOrderAdapter(private val clickHandler: StockUpdateActivity.StockUpda
                 editQuantity.setText(product.quantity.toString())
                 editStock.setText(product.stockQuantity.toString())
                 stockAvailableCheck.isChecked = product.inStock
-                editPrice.setText(String.format("₹ %d", product.price))
+                editPrice.setText(String.format("%d", product.price))
                 buttonUpdate.setOnClickListener {
                     clickHandler.onUpdate(
                         adapterPosition, product.copy(

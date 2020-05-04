@@ -44,9 +44,9 @@ class StockUpdateActivity : AppCompatActivity() {
 
     }
 
-    class StockUpdateClickListener {
+   inner class StockUpdateClickListener {
         fun onUpdate(index: Int, product: Product) {
-
+         viewModel.updateProduct(index, product)
         }
     }
 }

@@ -2,27 +2,25 @@ package com.syrous.market_admin.ui.orders
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.syrous.lib_bluetooth.DeviceCallbacks
 import com.syrous.lib_bluetooth.PosPrinter60mm
 import com.syrous.market_admin.AdminApplication
-import com.syrous.market_admin.R
+import com.syrous.market_admin.data.CustomerOrder
 import com.syrous.market_admin.databinding.ActivityMainBinding
 import com.syrous.market_admin.ui.updateOrders.StockUpdateActivity
 import com.syrous.market_admin.util.PrintUtil
-import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
 
-    private val printer by lazy { PosPrinter60mm(this) }
+    private var printer: PosPrinter60mm? = null
 
     private val viewModel by lazy {
         ViewModelProvider(
@@ -35,51 +33,55 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        printer.setCharsetName("UTF-8")
-        printer.setDeviceCallbacks(object : DeviceCallbacks {
-            override fun onFailure() {
-                Toast.makeText(this@MainActivity, "Device Connection failed!!", Toast.LENGTH_SHORT)
-                    .show()
-            }
+        printer = PosPrinter60mm(this)
+        printer?.setCharsetName("UTF-8")
+        printer?.connect()
 
-            override fun onConnected() {
-                Toast.makeText(this@MainActivity, "Device Connected!!", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onDisconnected() {
-                Toast.makeText(this@MainActivity, "Device disconnected!!", Toast.LENGTH_SHORT)
-                    .show()
-            }
-
-        })
-
-        printer.connect()
-        val orderAdapter = OrderAdapter()
-        viewModel.apply {
-            orders.observe(this@MainActivity) {
-                orderAdapter.submitList(it)
-            }
-            loading.observe(this@MainActivity) {
-                swipeToRefreshView.isRefreshing = it
-            }
-        }
+        val orderAdapter = OrderAdapter(OnclickListener())
         binding.apply {
             recyclerView.apply {
                 adapter = orderAdapter
                 layoutManager = LinearLayoutManager(this@MainActivity)
             }
             swipeToRefreshView.setOnRefreshListener { viewModel.reload() }
+            viewModel.apply {
+                orders.observe(this@MainActivity) {
+                    orderAdapter.submitList(it)
+                }
+                loading.observe(this@MainActivity) {
+                    swipeToRefreshView.isRefreshing = it
+                }
+            }
+
+            fabButton.setOnClickListener {
+                Toast.makeText(this@MainActivity, "Main Activity", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this@MainActivity, StockUpdateActivity::class.java))
+            }
 
         }
-        viewModel.orders.observe(this@MainActivity) {
-            it.forEach { customerOrder ->
-                PrintUtil(customerOrder, printer).printReceipt()
-            }
+
+    }
+
+    inner class OnclickListener() {
+        fun onClickPrint(customerOrder: CustomerOrder){
+            Log.d("MainActivity", "onClick called, customer Order id : ${customerOrder.id}")
+            printer?.let { PrintUtil(customerOrder, it).printReceipt() }
+        }
+
+        fun onCheckUpdatePayment(orderId: String, payment: String) {
+            viewModel.hitPaymentDone(orderId, payment)
+        }
+
+        fun onCheckUpdateStatus(orderId: String){
+            viewModel.hitOrderReady(orderId)
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        startActivity(Intent(this, StockUpdateActivity::class.java))
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        val intent = Intent(this, StockUpdateActivity::class.java)
+        startActivity(intent)
         return true
     }
+
+
 }

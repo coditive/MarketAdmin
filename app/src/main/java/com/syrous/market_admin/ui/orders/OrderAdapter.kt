@@ -15,7 +15,7 @@ import com.syrous.market_admin.util.Truss
 import com.syrous.market_admin.util.toSp
 import java.util.*
 
-class OrderAdapter : ListAdapter<CustomerOrder, OrderAdapter.OrderViewHolder>(
+class OrderAdapter(private val clickHandler: MainActivity.OnclickListener) : ListAdapter<CustomerOrder, OrderAdapter.OrderViewHolder>(
     CALLBACK
 ) {
     inner class OrderViewHolder(private val binding: OrderItemBinding) :
@@ -55,6 +55,17 @@ class OrderAdapter : ListAdapter<CustomerOrder, OrderAdapter.OrderViewHolder>(
                     .pushSpan(StyleSpan(Typeface.BOLD))
                     .pushSpan(AbsoluteSizeSpan(24f.toSp(textViewContact.resources)))
                     .append("₹ ${customerOrder.total_cost}").build()
+
+                buttonPrint.setOnClickListener{
+                    clickHandler.onClickPrint(customerOrder)
+                    it.isClickable = false
+                }
+
+                checkBoxPaid.setOnCheckedChangeListener { _, _ ->
+                    clickHandler.onCheckUpdatePayment(customerOrder.id, customerOrder.total_cost)}
+
+                checkBoxReady.setOnCheckedChangeListener{ _, _ ->
+                    clickHandler.onCheckUpdateStatus(customerOrder.id) }
             }
         }
     }
