@@ -2,6 +2,8 @@ package com.syrous.market_admin.ui.orders
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.syrous.lib_bluetooth.DeviceCallbacks
 import com.syrous.lib_bluetooth.PosPrinter60mm
 import com.syrous.market_admin.AdminApplication
+import com.syrous.market_admin.R
 import com.syrous.market_admin.databinding.ActivityMainBinding
 import com.syrous.market_admin.ui.updateOrders.StockUpdateActivity
 import com.syrous.market_admin.util.PrintUtil
@@ -66,9 +69,7 @@ class MainActivity : AppCompatActivity() {
                 layoutManager = LinearLayoutManager(this@MainActivity)
             }
             swipeToRefreshView.setOnRefreshListener { viewModel.reload() }
-            toolbar.apply {
 
-            }
         }
         viewModel.orders.observe(this@MainActivity) {
             it.forEach { customerOrder ->
@@ -76,7 +77,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         startActivity(Intent(this, StockUpdateActivity::class.java))

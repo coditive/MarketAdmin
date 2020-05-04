@@ -96,5 +96,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="toolbar_style" parent="Widget.AppCompat.ActionBar">
+
+    </style>
 
 </resources>
