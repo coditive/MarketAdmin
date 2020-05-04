@@ -1,4 +1,4 @@
-package com.syrous.market_admin
+package com.syrous.market_admin.ui.orders
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.syrous.market_admin.data.CustomerOrder
 import com.syrous.market_admin.databinding.OrderItemBinding
-import com.syrous.market_admin.utli.Truss
-import com.syrous.market_admin.utli.toSp
+import com.syrous.market_admin.util.Truss
+import com.syrous.market_admin.util.toSp
 import java.util.*
 
-class OrderAdapter : ListAdapter<CustomerOrder, OrderAdapter.OrderViewHolder>(CALLBACK) {
+class OrderAdapter : ListAdapter<CustomerOrder, OrderAdapter.OrderViewHolder>(
+    CALLBACK
+) {
     inner class OrderViewHolder(private val binding: OrderItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SimpleDateFormat")

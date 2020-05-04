@@ -2,6 +2,7 @@ package com.syrous.market_admin.data.remote
 
 import com.squareup.okhttp.RequestBody
 import com.syrous.market_admin.data.CustomerOrder
+import com.syrous.market_admin.data.Product
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PUT
@@ -22,4 +23,6 @@ interface RemoteApi {
     @PUT("api/update_products")
     suspend fun updateAllProducts(@Body products: RequestBody)
 
+    @GET("api/read-products")
+    suspend fun getProducts(): List<Product>
 }

@@ -1,6 +1,8 @@
-package com.syrous.market_admin
+package com.syrous.market_admin.ui.orders
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -8,9 +10,12 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.syrous.lib_bluetooth.DeviceCallbacks
 import com.syrous.lib_bluetooth.PosPrinter60mm
+import com.syrous.market_admin.AdminApplication
 import com.syrous.market_admin.databinding.ActivityMainBinding
-import com.syrous.market_admin.utli.PrintUtil
+import com.syrous.market_admin.ui.updateOrders.StockUpdateActivity
+import com.syrous.market_admin.util.PrintUtil
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,11 +32,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         printer.setCharsetName("UTF-8")
-        printer.setDeviceCallbacks(object : DeviceCallbacks{
+        printer.setDeviceCallbacks(object : DeviceCallbacks {
             override fun onFailure() {
-                Toast.makeText(this@MainActivity, "Device Connection failed!!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Device Connection failed!!", Toast.LENGTH_SHORT)
+                    .show()
             }
 
             override fun onConnected() {
@@ -39,7 +44,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onDisconnected() {
-                Toast.makeText(this@MainActivity, "Device disconnected!!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Device disconnected!!", Toast.LENGTH_SHORT)
+                    .show()
             }
 
         })
@@ -54,19 +60,26 @@ class MainActivity : AppCompatActivity() {
                 swipeToRefreshView.isRefreshing = it
             }
         }
-        binding.recyclerView.apply {
-            adapter = orderAdapter
-            layoutManager = LinearLayoutManager(this@MainActivity)
-
+        binding.apply {
+            recyclerView.apply {
+                adapter = orderAdapter
+                layoutManager = LinearLayoutManager(this@MainActivity)
+            }
             swipeToRefreshView.setOnRefreshListener { viewModel.reload() }
-        }
+            toolbar.apply {
 
-        viewModel.orders.observe(this@MainActivity){
-            it.forEach{ customerOrder ->
+            }
+        }
+        viewModel.orders.observe(this@MainActivity) {
+            it.forEach { customerOrder ->
                 PrintUtil(customerOrder, printer).printReceipt()
             }
         }
     }
 
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        startActivity(Intent(this, StockUpdateActivity::class.java))
+        return true
+    }
 }

@@ -1,7 +1,7 @@
 package com.syrous.market_admin
 
 import com.syrous.market_admin.data.remote.RemoteApi
-import com.syrous.market_admin.utli.BASE_URL
+import com.syrous.market_admin.util.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

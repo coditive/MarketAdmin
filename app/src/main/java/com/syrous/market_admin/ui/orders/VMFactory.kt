@@ -1,4 +1,4 @@
-package com.syrous.market_admin
+package com.syrous.market_admin.ui.orders
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

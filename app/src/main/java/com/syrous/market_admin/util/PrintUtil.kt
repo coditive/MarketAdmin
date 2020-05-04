@@ -1,19 +1,9 @@
-package com.syrous.market_admin.utli
+package com.syrous.market_admin.util
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
-import android.util.Printer
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.syrous.lib_bluetooth.DeviceCallbacks
 import com.syrous.lib_bluetooth.PosPrinter
-import com.syrous.lib_bluetooth.PosPrinter60mm
 import com.syrous.lib_bluetooth.TicketBuilder
-import com.syrous.market_admin.R
 import com.syrous.market_admin.data.CustomerOrder
-import kotlinx.coroutines.internal.artificialFrame
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 

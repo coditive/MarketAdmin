@@ -1,4 +1,4 @@
-package com.syrous.market_admin.utli
+package com.syrous.market_admin.util
 
 import android.text.SpannableStringBuilder
 import android.text.Spanned
