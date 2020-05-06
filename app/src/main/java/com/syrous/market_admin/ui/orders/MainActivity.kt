@@ -45,8 +45,8 @@ class MainActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
             }
             swipeToRefreshView.setOnRefreshListener { viewModel.reload() }
             viewModel.apply {
-                orders.observe(this@MainActivity) {
-                    orderAdapter.submitList(it)
+                orders.observe(this@MainActivity) { list ->
+                    orderAdapter.submitList(list.sortedBy{it.timestamp}.reversed())
                 }
                 loading.observe(this@MainActivity) {
                     swipeToRefreshView.isRefreshing = it

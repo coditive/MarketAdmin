@@ -9,7 +9,7 @@ import com.squareup.moshi.JsonClass
  */
 
 @JsonClass(generateAdapter = true)
-data class CustomerOrder (
+data class CustomerOrder(
     val id: String,
     val user_id: String,
     val first_name: String,

@@ -1,6 +1,5 @@
 package com.syrous.market_admin.data.remote
 
-import com.squareup.okhttp.RequestBody
 import com.syrous.market_admin.data.CustomerOrder
 import com.syrous.market_admin.data.PaymentDetails
 import com.syrous.market_admin.data.Product
@@ -21,8 +20,8 @@ interface RemoteApi {
     suspend fun orderReadyCall(@Path("order_id") order_id: String)
 
     //this will accept the changing parameters in form of products request body
-    @PUT("api/update_products")
-    suspend fun updateProduct(@Body products: Product)
+    @PUT("api/update_product/{product_id}")
+    suspend fun updateProduct(@Path("product_id")product_id: String,@Body products: Product)
 
     @GET("api/read-products")
     suspend fun getProducts(): List<Product>

@@ -35,12 +35,13 @@ class OrderUpdateVM(private val remoteApi: RemoteApi) : ViewModel() {
     }
 
     fun updateProduct(index: Int, product: Product) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             try {
                 _loading.postValue(true)
                 val list = _products.value?.toMutableList()
-               //TODO update the list with updated product
-                remoteApi.updateProduct(product)
+                list?.set(index, product)
+                _products.value = list
+                remoteApi.updateProduct(product.id,product)
 
             } catch (e: Exception) {
                 e.printStackTrace()
