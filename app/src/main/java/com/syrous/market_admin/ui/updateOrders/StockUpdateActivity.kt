@@ -1,6 +1,7 @@
 package com.syrous.market_admin.ui.updateOrders
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -47,6 +48,7 @@ class StockUpdateActivity : AppCompatActivity() {
    inner class StockUpdateClickListener {
         fun onUpdate(index: Int, product: Product) {
          viewModel.updateProduct(index, product)
+            Toast.makeText(this@StockUpdateActivity, "Order Updated Successfully !",Toast.LENGTH_SHORT).show()
         }
     }
 }

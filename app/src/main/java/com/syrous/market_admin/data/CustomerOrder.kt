@@ -14,7 +14,7 @@ data class CustomerOrder(
     val user_id: String,
     val first_name: String,
     val last_name: String,
-    val phone: Int,
+    val phone: Long,
     val address: Address,
     val order: List<Order>,
     val total_cost: String,
