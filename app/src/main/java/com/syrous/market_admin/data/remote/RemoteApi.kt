@@ -3,10 +3,7 @@ package com.syrous.market_admin.data.remote
 import com.syrous.market_admin.data.CustomerOrder
 import com.syrous.market_admin.data.PaymentDetails
 import com.syrous.market_admin.data.Product
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface RemoteApi {
 
@@ -25,4 +22,7 @@ interface RemoteApi {
 
     @GET("api/read-products")
     suspend fun getProducts(): List<Product>
+
+    @POST("api/add_product")
+    suspend fun addProduct(@Body products: Product)
 }

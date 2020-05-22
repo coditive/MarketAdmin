@@ -1,4 +1,4 @@
-package com.syrous.market_admin.ui.updateOrders
+package com.syrous.market_admin.ui.updateProducts
 
 
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ class UpdateOrderAdapter(private val clickHandler: StockUpdateActivity.StockUpda
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
             binding.apply {
-                productName.text = product.title
+                title.text = product.title
                 editQuantity.setText(product.quantity.toString())
                 editStock.setText(product.stockQuantity.toString())
                 stockAvailableCheck.isChecked = product.inStock

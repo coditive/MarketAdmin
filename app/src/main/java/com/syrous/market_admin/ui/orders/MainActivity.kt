@@ -14,7 +14,8 @@ import com.syrous.lib_bluetooth.PosPrinter60mm
 import com.syrous.market_admin.AdminApplication
 import com.syrous.market_admin.data.CustomerOrder
 import com.syrous.market_admin.databinding.ActivityMainBinding
-import com.syrous.market_admin.ui.updateOrders.StockUpdateActivity
+import com.syrous.market_admin.ui.addProduct.AddProductActivity
+import com.syrous.market_admin.ui.updateProducts.StockUpdateActivity
 import com.syrous.market_admin.util.PrintUtil
 
 
@@ -58,6 +59,9 @@ class MainActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
                 startActivity(Intent(this@MainActivity, StockUpdateActivity::class.java))
             }
 
+            fabAddProduct.setOnClickListener {
+                startActivity(Intent(this@MainActivity, AddProductActivity::class.java))
+            }
         }
 
     }

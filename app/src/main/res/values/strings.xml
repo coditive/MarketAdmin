@@ -20,6 +20,7 @@
     <string name="update_product">Update Product</string>
     <string name="print_receipt">Print Receipt</string>
     <string name="config_product">Configure Product</string>
-
-
+    <string name="add_product">Add Product</string>
+    <string name="product_name">Product Name :</string>
+    <string name="unit">Unit :</string>
 </resources>
